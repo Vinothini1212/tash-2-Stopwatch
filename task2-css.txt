@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('image.png');
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+
+}
+
+.stopwatch {
+    text-align: center;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#laps {
+    list-style: none;
+    padding: 0;
+}

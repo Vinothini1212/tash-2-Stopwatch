@@ -1,0 +1,47 @@
+let [hours, minutes, seconds] = [0, 0, 0];
+let timerRef = document.getElementById('display');
+let int = null;
+
+document.getElementById('startStop').addEventListener('click', function () {
+    if (int === null) {
+        int = setInterval(displayTimer, 1000);
+        this.textContent = 'Stop';
+    } else {
+        clearInterval(int);
+        int = null;
+        this.textContent = 'Start';
+    }
+});
+
+document.getElementById('reset').addEventListener('click', function () {
+    clearInterval(int);
+    int = null;
+    [hours, minutes, seconds] = [0, 0, 0];
+    timerRef.innerHTML = '00:00:00';
+    document.getElementById('startStop').textContent = 'Start';
+    document.getElementById('laps').innerHTML = '';
+});
+
+document.getElementById('lap').addEventListener('click', function () {
+    let lapTime = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    let li = document.createElement('li');
+    li.textContent = lapTime;
+    document.getElementById('laps').appendChild(li);
+});
+
+function displayTimer() {
+    seconds++;
+    if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes === 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    timerRef.innerHTML = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+}
+
+function pad(unit) {
+    return unit < 10 ? '0' + unit : unit;
+}
